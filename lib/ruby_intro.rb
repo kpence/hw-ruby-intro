@@ -68,4 +68,14 @@ class BookInStock
   def price ; @price ; end
   def isbn=(isbn) ; @isbn=isbn ; end
   def price=(price) ; @price=price ; end
+  
+  def price_as_string
+    s = @price.to_s
+    if s.index(".") == nil
+      return "$" + s + ".00"
+    elsif s.index(".") == (s.length - 2)
+      return "$" + s + "0"
+    end
+    "$" + s
+  end
 end
