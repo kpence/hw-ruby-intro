@@ -25,7 +25,7 @@ def sum_to_n? arr, n
   if arr.length <= 1 ; return false ; end
   arr.each_with_index do |a, aix|
     arr.each_with_index do |b,bix|
-      if (aix!=bix && a==b)
+      if (aix!=bix && a+b==n)
         return true
       end
     end
@@ -40,7 +40,7 @@ def hello(name)
 end
 
 def starts_with_consonant? s
-  s =~ /[[:alpha:]]/ && (not 'aeiouAEIOU'.include? s[0])
+  (s[0] =~ /[[:alpha:]]/) != nil && (not 'aeiouAEIOU'.include? s[0])
 end
 
 def binary_multiple_of_4? s
