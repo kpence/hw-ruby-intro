@@ -3,33 +3,69 @@
 # Part 1
 
 def sum arr
-  # YOUR CODE HERE
+  if arr.length == 0 ; return 0 ; end
+  arr.reduce(:+)
 end
 
 def max_2_sum arr
-  # YOUR CODE HERE
+  if arr.length == 1 ; return arr[0] ; end
+  if arr.length == 0 ; return 0 ; end
+  max = arr[0]+arr[1];
+  arr.each_with_index do |a, aix|
+    arr.each_with_index do |b,bix|
+      if (aix!=bix && a+b > max)
+        max = a+b
+      end
+    end
+  end
+  max
 end
 
 def sum_to_n? arr, n
-  # YOUR CODE HERE
+  if arr.length <= 1 ; return false ; end
+  arr.each_with_index do |a, aix|
+    arr.each_with_index do |b,bix|
+      if (aix!=bix && a==b)
+        return true
+      end
+    end
+  end
+  false
 end
 
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  'Hello, ' + name
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  s =~ /[[:alpha:]]/ && (not 'aeiouAEIOU'.include? s[0])
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  if s.empty?
+    return false
+  elsif not s.delete("01").empty?
+    return false
+  end
+  
+  s.to_i(2).modulo(4) == 0
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  def initialize(isbn, price)
+    raise ArgumentError, 'bad price' unless price > 0
+    raise ArgumentError, 'bad isbn' unless isbn[0..3]=='isbn' && isbn[4..-1].delete('/[0-9]/').empty?
+
+    @isbn = isbn
+    @price = price
+  end
+  
+  def isbn ; @isbn ; end
+  def price ; @price ; end
+  def isbn=(isbn) ; @isbn=isbn ; end
+  def price=(price) ; @price=price ; end
 end
